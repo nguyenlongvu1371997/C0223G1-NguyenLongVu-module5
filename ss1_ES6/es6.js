@@ -29,10 +29,10 @@ let courses = [
 const goodCourses = courses.filter(courses => courses.rating >= 4);
 console.log(goodCourses);
 
-const badCourses = [];
 
-courses.filter(courses => courses.rating < 4).forEach(e => {
-  badCourses.push(e.id + '-' + e.title + '-' + e.rating);
+
+const badCourses = courses.filter(courses => courses.rating < 4).map(e => {
+  return e.id + '-' + e.title + '-' + e.rating;
 });
 
 console.log(badCourses);
