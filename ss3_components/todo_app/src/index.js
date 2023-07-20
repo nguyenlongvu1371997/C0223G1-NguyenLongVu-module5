@@ -13,31 +13,37 @@ class Apps extends React.Component {
   }
 
   handleChange = (event) => {
-    this.setState({ item: event.target.value});
+    this.setState({ item: event.target.value });
   }
 
   handleAddItem = () => {
     if (this.state.item !== "") {
-      const newList = this.state.list;
-      newList.push(this.state.item);
-      const object = {list: newList,item: ""};
-      this.setState(object);
-    }
-  }
 
-  render() {
-    return (
-      <div>
-        <input type='textfield' value={this.state.item} onChange={this.handleChange}></input>
-        <button onClick={this.handleAddItem}>ADD</button>
-        <ul>
-          {this.state.list.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
-      </div>
-    )
+      this.setState(() => {
+        return ({
+          list: [...this.state.list,this.state.item],
+          item: ""
+        }
+         
+        )
+    } )
+    ;
   }
+}
+
+render() {
+  return (
+    <div>
+      <input type='textfield' value={this.state.item} onChange={this.handleChange}></input>
+      <button onClick={this.handleAddItem}>ADD</button>
+      <ul>
+        {this.state.list.map((item, index) => (
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
