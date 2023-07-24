@@ -1,8 +1,20 @@
 import React from "react";
+import { useState } from "react";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as yup from "yup";
 
 export default function MedicalDeclaration() {
+  const SEX_LIST = [{label: "Nam", value: "male"}, 
+  {label: "Nữ", value: "female"}];
+
+  const [form, setForm] = useState({});
+
+  const handleChange = (event) => {
+    const value = event.target.type === "checkbox" ? !form[event.target.name] : event.target.value;
+    setForm({ ...form, [event.target.name]: value });
+  };
+
+  
   return (
     <>
       <Formik
@@ -21,6 +33,16 @@ export default function MedicalDeclaration() {
           address: "",
           phone: "",
           email: "",
+          fever: "",
+          cough: "",
+          breathLess: "",
+          pneumonia: "",
+          soreThroat: "",
+          tired: "",
+          person1: "",
+          person2: "",
+          person3: "",
+
         }}
 
         validationSchema={{
@@ -65,8 +87,18 @@ export default function MedicalDeclaration() {
           <div>
             <label htmlFor="gender">Giới tính: </label>
             <label >
-              <Field type="radio" id="male" name="gender" value="male">Nam</Field>
-              <Field type="radio" id="female" name="gender" value="female">Nữ</Field>
+            {SEX_LIST.map((sex) => (
+          <label key={sex.value}>
+            <input
+              type="radio"
+              name="sex"
+              value={sex.value}
+              checked={form.sex === sex.value}
+              onChange={handleChange}
+            />
+            {sex.label}
+          </label>
+        ))}
             </label>
           </div>
 
@@ -139,7 +171,7 @@ export default function MedicalDeclaration() {
 
           <div>
             <lable htmlFor="countries"></lable><br></br>
-            <textarea id="countries" type='text' name="countries"></textarea>
+            <Field  id="countries" name="countries"></Field>
             <ErrorMessage name="countries" component="div" className='text-area' />
           </div>
 
