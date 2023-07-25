@@ -4,22 +4,23 @@ import React from "react";
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
 import { AddBook } from "../service/BookService";
+import { Link } from "react-router-dom";
 
 
 export default function CreateBook() {
     const navigate = useNavigate();
-    
+
     return (
         <>
             <Formik
                 initialValues={{ id: '', title: '', quantity: '' }}
                 validationSchema={yup.object({
                     title: yup.string().required("title is required"),
-                    quantity: yup.number().required("quantity is required").min(1,"quantity is more than 0")
+                    quantity: yup.number().required("quantity is required").min(1, "quantity is more than 0")
                 })}
                 onSubmit={(values) => {
                     AddBook(values).then(() => {
-                        navigate('/books');
+                        navigate('/');
                     })
                 }}>
                 <Form>
@@ -40,6 +41,7 @@ export default function CreateBook() {
                     <button type="submit">Create</button>
                 </Form>
             </Formik>
+        
         </>
     )
 }

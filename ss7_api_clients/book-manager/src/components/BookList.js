@@ -40,7 +40,7 @@ export default function ListBook() {
                                     <Link to={`/book/edit/${book.id}`}>Edit</Link>
                                 </button>
                             </td>
-                            <td><button onClick={delete (book.id)}>Delete</button></td>
+                            <td><button type="submit" onClick={delete (book.id)}>Delete</button></td>
                         </tr>
                     )
                 })}
