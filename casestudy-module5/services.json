@@ -1,0 +1,72 @@
+{
+  "villas": [
+    {
+      "id": 1,
+      "standard": "good",
+      "describe": "nothing",
+      "poolArea": 15,
+      "floors" :3
+    },
+    {
+      "id": 2,
+      "standard": "good",
+      "describe": "nothing",
+      "poolArea": 15,
+      "floors" :3
+    },
+    {
+      "id": 3,
+      "standard": "good",
+      "describe": "nothing",
+      "poolArea": 15,
+      "floors" :3
+    },
+    {
+      "id": 4,
+      "standard": "good",
+      "describe": "nothing",
+      "poolArea": 15,
+      "floors" :3
+    }
+
+  ],
+
+
+  "houses": [
+    {
+      "id": 1,
+      "standard": "good",
+      "describe": "nothing",
+      "floors" :3
+    },
+    {
+      "id": 2,
+      "standard": "good",
+      "describe": "nothing",
+      "floors" :2
+    },
+    {
+      "id": 3,
+      "standard": "good",
+      "describe": "nothing",
+      "floors" :3
+    },
+    {
+      "id": 4,
+      "standard": "good",
+      "describe": "nothing",
+      "floors" :1
+    },
+    {
+      "id": 5,
+      "standard": "good",
+      "describe": "nothing",
+      "floors" :4
+    }
+  ],
+
+  
+  "rooms": {
+    
+  }
+}

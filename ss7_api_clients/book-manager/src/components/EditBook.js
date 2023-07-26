@@ -12,7 +12,7 @@ export default function Edit() {
     const { id } = useParams();
     const [book, setBook] = useState()
     const getBook = async () => {
-        const getBook = await GetBookById(id);
+        const book = await GetBookById(id);
         setBook(getBook);
     };
 
@@ -22,7 +22,7 @@ export default function Edit() {
     return (
         <>
             <Formik
-                initialValues={{ id: '', title: '', quantity: '' }}
+                initialValues={{ id, title: '', quantity: '' }}
                 validationSchema={yup.object({
                     title: yup.string().required("title is required"),
                     quantity: yup.number().required("quantity is required").min(1, "quantity is more than 0")
