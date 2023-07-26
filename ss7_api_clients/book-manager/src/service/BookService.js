@@ -16,3 +16,8 @@ export async function EditBook(book) {
 export async function DeleteBook(id) {
     await axios.delete("http://localhost:8080/books/" + id);
 }
+
+export async function GetBookById(id) {
+    const res = await axios.get("http://localhost:8080/books/" + id);
+    return res.data;
+  }

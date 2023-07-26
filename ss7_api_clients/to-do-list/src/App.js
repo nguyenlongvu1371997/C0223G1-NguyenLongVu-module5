@@ -3,16 +3,19 @@ import './App.css';
 import { getToDoList, createToDo } from './service/ListService';
 import { useEffect, useState } from 'react';
 
+
+
 function App() {
   const [toDoList, setToDoList] = useState([]);
 
+  const getToDoList = async () => {
+    const data = await getListToDo();
+    setToDoList(data);
+  };
+
   useEffect(() => {
-    const getList = async () => {
-      const data = await getToDoList();
-      setToDoList(data)
-    }
-    getList();
-  });
+    getToDoList();
+  },[newToDo])
 
   const handleAddTodo = () => {
     const toDo = document.getElementById('toDo').value;

@@ -3,17 +3,26 @@ import { useNavigate, useParams } from "react-router-dom";
 import React from "react";
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as yup from 'yup';
-import { EditBook } from "../service/BookService";
+import { EditBook, GetBookById } from "../service/BookService";
 
 
 
 export default function Edit() {
     const navigate = useNavigate();
-    const bk = useParams(id);
+    const { id } = useParams();
+    const [book, setBook] = useState()
+    const getBook = async () => {
+        const getBook = await GetBookById(id);
+        setBook(getBook);
+    };
+
+    useEffect(() => {
+        getBook();
+    }, [id]);
     return (
         <>
             <Formik
-                initialValues={{ id: bk, title: '', quantity: '' }}
+                initialValues={{ id: '', title: '', quantity: '' }}
                 validationSchema={yup.object({
                     title: yup.string().required("title is required"),
                     quantity: yup.number().required("quantity is required").min(1, "quantity is more than 0")
@@ -30,7 +39,7 @@ export default function Edit() {
                         <label htmlFor="title">
                             Title:
                         </label>
-                        <Field id='title' type='text' name='title' />
+
                         <ErrorMessage name="title" component='div' className="red-text" />
                     </div>
                     <div>

@@ -6,12 +6,14 @@ import { useState, useEffect } from "react";
 export default function ListBook() {
     const [listBook, setListBook] = useState([]);
 
+    const getBooks = async () => {
+        const data = await GetBookList();
+        setListBook(data);
+    }
+   
+
     useEffect(() => {
-        const getBook = async () => {
-            const data = await GetBookList();
-            setListBook(data);
-        }
-        getBook();
+       getBooks();
     }, []);
 
     delete ((id) => {
