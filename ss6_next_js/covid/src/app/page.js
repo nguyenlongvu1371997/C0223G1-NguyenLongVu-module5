@@ -1,32 +1,21 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import axios from 'axios';
-import "bootstrap/dist/css/bootstrap.css";
 import React from 'react';
 
 export async function getServerSideProps() {
-  try {
-    const response = await axios.get('http://localhost:8080/covids');
-    const dataList = response.data;
-    return {
-      props: {
-        dataList
-      },
-    };
-  } catch (error) {
-    console.error(error);
-    return {
-      props: {
-        dataList: [],
-      },
-    };
-  }
+  const res = await axios.get('http://localhost:8080/covids');
+  const list = res.data;
+  return {
+    props: {
+      list
+    }
+  };
 }
 
-export default function Home({dataList}) {
-  
+export default function Home({ list }) {
   return (
-    <>
+    <div>
       <h2>Vietnam's COVID-19 information</h2>
       <table className='table table-striped'>
         <thead>
@@ -39,21 +28,21 @@ export default function Home({dataList}) {
           </tr>
         </thead>
         <tbody>
-          {dataList.map((m, index) => {
+          {list.map((infor) => {
             return (
-              <tr key={index}>
-                <td>{m.date}</td>
-                <td>{m.confirmed}</td>
-                <td>{m.active}</td>
-                <td>{m.recovered}</td>
-                <td>{m.deaths}</td>
+              <tr key={infor.id}>
+                <td>{infor.date}</td>
+                <td>{infor.confirmed}</td>
+                <td>{infor.active}</td>
+                <td>{infor.recovered}</td>
+                <td>{infor.deaths}</td>
               </tr>
             )
           })}
         </tbody>
       </table>
-    </>
-  )
+    </div>
+  );
 }
 
 

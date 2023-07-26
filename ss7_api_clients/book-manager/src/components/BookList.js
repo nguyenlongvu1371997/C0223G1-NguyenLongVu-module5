@@ -6,6 +6,14 @@ import { useState, useEffect } from "react";
 export default function ListBook() {
     const [listBook, setListBook] = useState([]);
 
+    const handelButtonDeleteBook = (id) => {
+        const confirm = window.confirm("Do you want to delete");
+        if(confirm){
+            DeleteBook(id)
+            alert("delete successful")
+        }
+      };
+
     const getBooks = async () => {
         const data = await GetBookList();
         setListBook(data);
@@ -16,9 +24,7 @@ export default function ListBook() {
        getBooks();
     }, []);
 
-    delete ((id) => {
-        DeleteBook(id)
-    })
+
 
     return (
         <>
@@ -42,7 +48,7 @@ export default function ListBook() {
                                     <Link to={`/book/edit/${book.id}`}>Edit</Link>
                                 </button>
                             </td>
-                            <td><button type="submit" onClick={delete (book.id)}>Delete</button></td>
+                            <td><button type="submit" onClick={handelButtonDeleteBook (book.id)}>Delete</button></td>
                         </tr>
                     )
                 })}
