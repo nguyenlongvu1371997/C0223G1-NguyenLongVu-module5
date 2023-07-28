@@ -2,10 +2,20 @@ import Image from 'next/image'
 import styles from './page.module.css'
 import axios from 'axios';
 import React from 'react';
+import GetList from '@/service/service';
 
 export async function getServerSideProps() {
-  const res = await axios.get('http://localhost:8080/covids');
-  const list = res.data;
+  const [list, setList] = useState([]);
+
+  const GetList = async () => {
+    const covidList = await GetList();
+    setList(covidList);
+  }
+
+  useEffect(() => {
+    GetList();
+  }, []);
+
   return {
     props: {
       list

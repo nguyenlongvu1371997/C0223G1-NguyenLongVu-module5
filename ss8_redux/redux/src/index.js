@@ -18,7 +18,7 @@ root.render(
     <>
     <Header/>
     <Routes>
-    <Route path="/list" element={<ListUsers/>}></Route>
+    <Route path="/list" element={<ListUsers />}></Route>
     </Routes>
     </>
     </Provider>
