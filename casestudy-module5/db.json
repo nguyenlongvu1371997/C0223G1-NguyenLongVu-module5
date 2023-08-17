@@ -572,74 +572,97 @@
   ],
   "contracts": [
     {
-      "contract_id": "001",
-      "check_in": "2023-08-01",
-      "check_out": "2023-08-05",
-      "deposit": 500,
-      "total": 2000
+      "id": 1,
+      "contract_id": "hd-0122023",
+      "customer": {
+        "id": "1",
+        "name": "Nguyen Van Anh",
+        "date_of_birth": "01/01/1990",
+        "gender": "Male",
+        "id_card": "123456789",
+        "phone_number": "0123456789",
+        "email": "nguyenanh@gmail.com",
+        "customer_type": "Platinium",
+        "address": "No.1 Street A, District 1, Ho Chi Minh City"
+      },
+      "service": {
+        "service": "GRANT VILLA",
+        "usable_area": 85,
+        "costs": 4500,
+        "max_people": 4,
+        "type": "Month",
+        "standard": "Superior",
+        "description": "A luxury room with double bed, sea view, balcony and jacuzzi",
+        "pool": 15,
+        "floor": 4,
+        "free": "Yes"
+      },
+      "startDate": "2023-01-27",
+      "endDate": "2020-03-27",
+      "prepaidAmount": 1000,
+      "totalPayment": 4400
     },
     {
-      "contract_id": "002",
-      "check_in": "2023-09-10",
-      "check_out": "2023-09-15",
-      "deposit": 800,
-      "total": 3200
+      "id": 2,
+      "contract_id": "hd-013023",
+      "customer": {
+        "id": "7",
+        "name": "Tran Van Giang",
+        "date_of_birth": "07/07/1987",
+        "gender": "Male",
+        "id_card": "963852741",
+        "phone_number": "0963852741",
+        "email": "tranvang@gmail.com",
+        "customer_type": "Gold",
+        "address": "No.7 Street G, District 7, Ho Chi Minh City"
+      },
+      "service": {
+        "service": "LUXURY VILLA",
+        "usable_area": 110,
+        "costs": 1000,
+        "max_people": 5,
+        "type": "Day",
+        "standard": "Luxury",
+        "description": "A luxury room with double bed, sea view, balcony and jacuzzi",
+        "pool": 20,
+        "floor": 4,
+        "free": ""
+      },
+      "startDate": "2023-01-27",
+      "endDate": "2020-02-05",
+      "prepaidAmount": 5000,
+      "totalPayment": 10000
     },
     {
-      "contract_id": "003",
-      "check_in": "2023-10-01",
-      "check_out": "2023-10-07",
-      "deposit": 600,
-      "total": 2400
-    },
-    {
-      "contract_id": "004",
-      "check_in": "2023-11-15",
-      "check_out": "2023-11-20",
-      "deposit": 1000,
-      "total": 4000
-    },
-    {
-      "contract_id": "005",
-      "check_in": "2024-01-02",
-      "check_out": "2024-01-05",
-      "deposit": 300,
-      "total": 1200
-    },
-    {
-      "contract_id": "006",
-      "check_in": "2024-02-14",
-      "check_out": "2024-02-20",
-      "deposit": 800,
-      "total": 3200
-    },
-    {
-      "contract_id": "007",
-      "check_in": "2024-03-05",
-      "check_out": "2024-03-10",
-      "deposit": 400,
-      "total": 1600
-    },
-    {
-      "contract_id": "008",
-      "check_in": "2024-04-20",
-      "check_out": "2024-04-25",
-      "deposit": 900,
-      "total": 3600
-    },
-    {
-      "contract_id": "009",
-      "check_in": "2024-05-15",
-      "check_out": "2024-05-20",
-      "deposit": 600,
-      "total": 2400
-    },
-    {
-      "contract_id": "010",
-      "check_in": "2024-06-10",
-      "check_out": "2024-06-15",
-      "deposit": 700,
-      "total": 2800
+      "id": 3,
+      "contract_id": "hd-014023",
+      "customer": {
+        "id": "9",
+        "name": "Phan Van Khang",
+        "date_of_birth": "09/09/1986",
+        "gender": "Male",
+        "id_card": "852741963",
+        "phone_number": "0852741963",
+        "email": "phanvani@hotmail.com",
+        "customer_type": "Member",
+        "address": "No.9 Street I, District 9, Ho Chi Minh City"
+      },
+      "service": {
+        "service": "HILLTOP VILLA",
+        "usable_area": 100,
+        "costs": 4000,
+        "max_people": 5,
+        "type": "Month",
+        "standard": "Economy",
+        "description": "A luxury room with double bed, sea view, balcony and jacuzzi",
+        "pool": "",
+        "floor": 3,
+        "free": ""
+      },
+      "startDate": "2023-02-10",
+      "endDate": "2020-03-10",
+      "prepaidAmount": 4000,
+      "totalPayment": 4000
     }
   ]
 }

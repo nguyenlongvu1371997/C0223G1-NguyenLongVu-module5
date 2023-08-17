@@ -2,36 +2,36 @@ import Header from "./Header.js"
 import Footer from "./Footer.js"
 import Navigation from "./Navigation.js"
 import { useState, useEffect } from "react";
-import { GetCustomerList, DeleteCustomer } from "../service/ServicesService.js";
+import { GetContractList, DeleteContract } from "../service/ServicesService.js";
 import React from "react";
-import '../css/ListCustomer.css';
+import '../css/ListContract.css';
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 
 
 
-export default function CustomerList() {
+export default function ContractList() {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [listCustomer, setListCustomer] = useState([]);
-    const [selectCustomerId, setSelectCustomerId] = useState(null);
+    const [listContract, setListContract] = useState([]);
+    const [selectContractId, setSelectContractId] = useState(null);
 
-    const getListCustomer = async () => {
-        const list = await GetCustomerList();
-        setListCustomer(list);
+    const getListContract = async () => {
+        const list = await GetContractList();
+        setListContract(list);
     }
 
     useEffect(() => {
-        getListCustomer();
+        getListContract();
     }, []);
 
     const handleDelete = async () => {
-        await DeleteCustomer(`${selectCustomerId}`);
+        await DeleteContract(`${selectContractId}`);
         setShowDeleteModal(false);
-        await getListCustomer();
+        await getListContract();
     };
 
-    const handleShowDeleteModal = (customerId) => {
-        setSelectCustomerId(customerId);
+    const handleShowDeleteModal = (id) => {
+        setSelectContractId(id);
         setShowDeleteModal(true);
     };
 
@@ -47,9 +47,9 @@ export default function CustomerList() {
                     <div className="table-wrapper">
                         <div className="table-title">
                             <div className="row">
-                                <div className="col-sm-8"><h2><b>LIST CUSTOMER</b> </h2></div>
+                                <div className="col-sm-8"><h2><b>LIST Contract</b> </h2></div>
                                 <div className="col-sm-4">
-                                    <Link to="../customer/create" className="btn btn-info add-new">
+                                    <Link to="../contract/create" className="btn btn-info add-new">
                                         <i className="fa fa-plus"></i> Add new
                                     </Link>
                                 </div>
@@ -58,30 +58,34 @@ export default function CustomerList() {
                         <table className="table table-bordered">
                             <thead>
                                 <tr>
-                                    <td>STT</td>
-                                    <td>Name</td>
-                                    <td>Date of birth</td>
-                                    <td>Id card</td>
-                                    <td>Phone number</td>
-                                    <td>Action </td>
+                                    <th>ID</th>
+                                    <th>Customer</th>
+                                    <th>Service</th>
+                                    <th>Day Start</th>
+                                    <th>Day End</th>
+                                    <th>Pre-order amount</th>
+                                    <th>Total payment amount</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
 
 
 
-                                {listCustomer.map((customer, index) => {
+                                {listContract.map((c, index) => {
                                     return (
-                                        <tr key={customer.id}>
-                                            <td>{index + 1}</td>
-                                            <td>{customer.name}</td>
-                                            <td>{customer.date_of_birth}</td>
-                                            <td>{customer.id_card}</td>
-                                            <td>{customer.phone_number}</td>
+                                        <tr key={c.id}>
+                                            <td>{c.contract_id}</td>
+                                            <td>{c.customer.name}</td>
+                                            <td>{c.service.service}</td>
+                                            <td>{c.startDate}</td>
+                                            <td>{c.endDate}</td>
+                                            <td>{c.prepaidAmount}</td>
+                                            <td>{c.totalPayment}</td>
                                             <td>
-                                                
-                                                <Link to={`../customer/edit/${customer.id}`}><button href="#" className="edit" title="Edit" data-toggle="tooltip">Edit</button></Link>
-                                                <button onClick={() => handleShowDeleteModal(customer.id)} className="delete" title="Delete" data-toggle="tooltip">Delete</button>
+
+                                                <Link to={`../contract/edit/${c.id}`}><button href="#" className="edit" title="Edit" data-toggle="tooltip">Edit</button></Link>
+                                                <button onClick={() => handleShowDeleteModal(c.id)} className="delete" title="Delete" data-toggle="tooltip">Delete</button>
                                             </td>
                                         </tr>
                                     )
@@ -89,10 +93,10 @@ export default function CustomerList() {
 
                                 <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
                                     <Modal.Header closeButton>
-                                        <Modal.Title>Delele customer</Modal.Title>
+                                        <Modal.Title>Delele contract</Modal.Title>
                                     </Modal.Header>
                                     <Modal.Body>
-                                        Do you sure to delese this customer?
+                                        Do you sure to delese this contract?
                                     </Modal.Body>
                                     <Modal.Footer>
                                         <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>

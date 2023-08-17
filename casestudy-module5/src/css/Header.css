@@ -6,11 +6,14 @@
 .navbar .navbar-brand {
     position: absolute;
     padding: 0;
-    width: 170px;
-    height: 135px;
+    width: 70px;
+    height: 70px;
     top: 0;
     left: 0;
+    border: none;
 }
+
+
 
 .navbar .navbar-nav .nav-link {
     margin-right: 35px;
