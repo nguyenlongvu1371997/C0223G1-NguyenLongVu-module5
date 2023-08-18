@@ -29,32 +29,35 @@ let courses = [
 let a = courses.filter((element) => element.rating >= 4)
 console.log(a);
 
-let b = courses.filter((e) => e.rating < 4);
+let b = courses.filter((e) => e.rating < 4).map((e) => { 
+    return e.id + "-" + e.title + "-" + e.rating }
+);
+
 b.forEach((e) => {
-    console.log(e.id + " - " + e.title + " - " + e.rating)
+    console.log(e)
 })
 
-let addedCourses = [ 
-    { 
-      id: 6, 
-      title: "PHP Tutorial", 
-      rating: 3, 
-    }, 
-    { 
-      id: 7, 
-      title: "C# Tutorial", 
-      rating: 2, 
-    }, 
-    { 
-      id: 8, 
-      title: "Docker Tutorial", 
-      rating: 3.8, 
-    } 
-  ]; 
-  
-  
+const mergeArray = (a,b) => {
+return [...a,...b];
+}
 
-let c = [...courses,...addedCourses];
-c.forEach((element)=>{
-    console.log(element)
-})
+let addedCourses = [
+    {
+        id: 6,
+        title: "PHP Tutorial",
+        rating: 3,
+    },
+    {
+        id: 7,
+        title: "C# Tutorial",
+        rating: 2,
+    },
+    {
+        id: 8,
+        title: "Docker Tutorial",
+        rating: 3.8,
+    }
+];
+
+
+console.log(mergeArray(courses,addedCourses));
