@@ -66,12 +66,19 @@ const [content, setContent] = useState("");
       "content": content,
       "updatedAt": new Date(),
     }
+
+    
+
   }
 
 
 
   return (
     <div>
+      <div>
+        <label htmlFor='title'></label>
+        <input></input>
+      </div>
       <table className="post-list" border={1}>
         <tr>
           <td>ID</td>
