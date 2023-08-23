@@ -95,6 +95,7 @@ export default function ListPost() {
             alert("you have to input everything");
             return;
         }
+
         const date = new Date();
         const newPost = {
             "id": Math.floor(Math.random() * 10000),
@@ -104,7 +105,8 @@ export default function ListPost() {
             "content": content,
             "updatedAt": date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear(),
         }
-        setList([...list, newPost]);
+
+        setList((pre) => [...pre, newPost]);
         setTitle("");
         setCategory("");
         setContent("");
