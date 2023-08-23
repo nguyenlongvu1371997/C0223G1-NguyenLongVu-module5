@@ -1,8 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import { listPost } from "../Data";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function ListPost() {
+    const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
     const [content, setContent] = useState("");
@@ -80,14 +82,17 @@ export default function ListPost() {
     }
 
     const getPost = (id) => {
-        for (let i = 0; i < list.length; i++) {
-            if (list[i].id === id) {
-                setTitle(list[i].title);
-                setCategory(list[i].category);
-                setContent(list[i].content);
-                setId(id);
-            }
-        }
+        // for (let i = 0; i < list.length; i++) {
+        //     if (list[i].id === id) {
+        //         // setTitle(list[i].title);
+        //         // setCategory(list[i].category);
+        //         // setContent(list[i].content);
+        //         // setId(id);
+        //         navigate(`/listPost/edit` + list[i])
+        //     }
+        // }
+        
+        navigate(`/listPost/edit/${id}`)
     }
 
     const createPost = () => {
@@ -114,7 +119,7 @@ export default function ListPost() {
 
     return (
         <div>
-            <div>
+            {/* <div>
                 <div>
                     <label htmlFor='title'>Input title</label>
                     <input id="title" name="title" value={title} onChange={(event) => handleInputTitle(event.target.value)}></input>
@@ -129,8 +134,10 @@ export default function ListPost() {
                 </div>
                 <button onClick={() => createPost()}>Add</button>
                 <button onClick={() => editPost()}>Edit</button>
+            </div> */}
 
-            </div>
+            <Link to="/listPost/create">Add Post</Link>
+
             <table className="post-list" border={1}>
                 <tr>
                     <td>ID</td>

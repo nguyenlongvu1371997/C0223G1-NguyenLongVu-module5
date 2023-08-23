@@ -4,11 +4,22 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import ListPost from './components/ListPost';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CreatePost from './components/CreatePost';
+import EditPost from './components/EditPost';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ListPost />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/listPost' element={<ListPost />} />
+        <Route path='/listPost/create' element={<CreatePost />} />
+        <Route path="/listPost/edit/:id" element={<EditPost />} />
+      </Routes>
+    </BrowserRouter>
+    
   </React.StrictMode>
 );
 
