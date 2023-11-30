@@ -1,39 +1,55 @@
+import { useRouter } from "next/router"
 import { Form, Formik, Field, ErrorMessage } from "formik";
-import { createPost } from "./service/service";
 import * as yup from 'yup';
-import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { editPost, getPost } from "../../service/service";
 
-export default function CreatePost() {
+
+export default function EditPost() {
     const router = useRouter();
+    const { id } = useRouter().query;
+    const [post, setPost] = useState(null);
+    const getPostById = async (id) => {
+        const res = await getPost(id);
+        setPost((pre) => res);
+    }
+    useEffect(() => {
+        getPostById(id);
+    }, useRouter().query)
+
     const create = async (post) => {
         const category = post.category;
         post.slug = category.replace(" ", "-").toLowerCase();
         const date = new Date();
         post.updatedAt = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-        await createPost(post);
+        await editPost(post);
+        backToList();
     }
     const backToList = () => {
         router.replace('/listPost')
     }
+    if (post == null) {
+        return null;
+    }
     return (
         <>
-            <h1>Create post</h1>
+            <h1>Edit post</h1>
             <button onClick={() => backToList()}>Back to list</button>
             <Formik
                 initialValues={{
-                    title: "",
-                    category: "",
-                    slug: "",
-                    content: "",
-                    author: "",
-                    author_email: "",
+                    id: id,
+                    title: post.title,
+                    category: post.category,
+                    slug: post.slug,
+                    content: post.content,
+                    author: post.author,
+                    author_email: post.author_email,
                     updatedAt: "",
                 }}
 
                 onSubmit={(value) => {
                     create(value);
                     const form = document.getElementById("form");
-                    form.reset();
                 }}
 
                 validationSchema={yup.object({
@@ -71,9 +87,9 @@ export default function CreatePost() {
                         <ErrorMessage name="author_email" />
                     </div>
                     <button type="submit">Add</button>
-                    <button type="reset">Clear</button>
                 </Form>
             </Formik>
         </>
     )
 }
+

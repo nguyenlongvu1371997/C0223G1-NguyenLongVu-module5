@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { deletePost, getList } from "./service/service";
+import { deletePost, getList } from "../service/service";
 import { useRouter } from "next/router";
 import ReactModal from "react-modal";
 

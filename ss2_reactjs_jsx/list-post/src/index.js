@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import ListPost from './components/ListPost';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import CreatePost from './components/CreatePost';
-import EditPost from './components/EditPost';
+import Page1 from './components/Page1';
+import Page2 from './components/Page2';
+import Page3 from './components/Page3';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,9 +16,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path='/listPost' element={<ListPost />} />
-        <Route path='/listPost/create' element={<CreatePost />} />
-        <Route path="/listPost/edit/:id" element={<EditPost />} />
+        <Route path='/page1' element={<Page1 />} />
+        <Route path='/page2' element={<Page2 />} />
+        <Route path="/page3" element={<Page3 />} />
       </Routes>
     </BrowserRouter>
     

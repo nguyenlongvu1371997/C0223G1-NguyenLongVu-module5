@@ -1,52 +1,53 @@
-import React from "react";
-import { Field, Formik, ErrorMessage, Form } from "formik";
-import * as Yup from "yup";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { listPost } from "../Data";
-import ListPost from "./ListPost";
+import { Form, Formik, Field, ErrorMessage } from "formik";
+import { createPost } from "../service/service";
+import * as yup from 'yup';
+import { useRouter } from "next/router";
 
-export default function () {
-    const navigate = useNavigate();
-
-    const Validation = Yup.object().shape({
-        title: Yup.string().required('can not empty').min(3, "too short"),
-        category: Yup.string().required('can not empty').min(3, "too short"),
-        content: Yup.string().required('can not empty').min(3, "too short"),
-        author: Yup.string().required('can not empty').min(3, "too short"),
-        author_email: Yup.string().required('can not empty').email('email must be something@something.com')
-    })
+export default function CreatePost() {
+    const router = useRouter();
+    const create = async (post) => {
+        const category = post.category;
+        post.slug = category.replace(" ", "-").toLowerCase();
+        const date = new Date();
+        post.updatedAt = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+        await createPost(post);
+    }
+    const backToList = () => {
+        router.replace('/listPost')
+    }
     return (
-        <div>
-            <Link to="/listPost">Back to list</Link>
+        <>
             <h1>Create post</h1>
+            <button onClick={() => backToList()}>Back to list</button>
             <Formik
                 initialValues={{
-                    id: Math.floor(Math.random() * 10000),
                     title: "",
-                    slug: "",
                     category: "",
+                    slug: "",
                     content: "",
-                    updatedAt: "",
                     author: "",
-                    author_email : ""
+                    author_email: "",
+                    updatedAt: "",
                 }}
 
                 onSubmit={(value) => {
-                    value.slug = value.title.replace(" ", "-").toLowerCase();
-                    const date = new Date();
-                    value.updatedAt = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
-                    listPost.push(value);
-                    navigate("/listPost");
+                    create(value);
+                    const form = document.getElementById("form");
+                    form.reset();
                 }}
 
-                validationSchema={Validation}
-
+                validationSchema={yup.object({
+                    title: yup.string().required('required'),
+                    category: yup.string().required('required'),
+                    content: yup.string().required('required'),
+                    author: yup.string().required('required'),
+                    author_email: yup.string().required('required').email('this must be a email')
+                })}
             >
-                <Form>
+                <Form id="form">
                     <div>
                         <label htmlFor='title'>Input title</label>
-                        <Field id="title" name="title" />
+                        <Field id="title" name="title" className="input" />
                         <ErrorMessage name="title" />
                     </div>
                     <div>
@@ -70,9 +71,9 @@ export default function () {
                         <ErrorMessage name="author_email" />
                     </div>
                     <button type="submit">Add</button>
+                    <button type="reset">Clear</button>
                 </Form>
-
             </Formik>
-        </div>
+        </>
     )
 }
